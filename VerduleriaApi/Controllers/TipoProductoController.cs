@@ -7,25 +7,25 @@ namespace VerduleriaApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductoController : ControllerBase
+    public class TipoProductoController : ControllerBase
     {
         private readonly VerduleriaContext _context;
 
-        public ProductoController(VerduleriaContext context)
+        public TipoProductoController(VerduleriaContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Producto>>> GetProductos()
+        public async Task<ActionResult<List<TipoProducto>>> GetTipos()
         {
             try
             {
                 //Retorna el Ok  que es igual al 200 (Status)
-                var productos = _context.Producto.ToList();
-                if(productos != null)
+                var tipos = _context.TipoProducto.ToList();
+                if(tipos != null)
                 {
-                    return Ok(productos);
+                    return Ok(tipos);
                 }
                 else
                 {
@@ -39,15 +39,15 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<Producto>>> GetProductoById(int id)
+        public async Task<ActionResult<List<TipoProducto>>> GetTipoById(int id)
         {
             //Retorna el Ok  que es igual al 200 (Status)
             try
             {
-                var producto = _context.Producto.Find(id);
-                if (producto == null)
+                var tipo = _context.TipoProducto.Find(id);
+                if (tipo == null)
                     return NotFound();
-                return Ok(producto);
+                return Ok(tipo);
             }
             catch (Exception)
             {
@@ -56,11 +56,11 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Producto>>> PostProducto(Producto producto)
+        public async Task<ActionResult<List<TipoProducto>>> PostTipoProducto(TipoProducto tipo)
         {
             try
             {
-                _context.Add(producto);
+                _context.Add(tipo);
                 _context.SaveChanges();
                 return Ok();
             }
@@ -72,12 +72,12 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<Producto>>> PutProducto(Producto producto)
+        public async Task<ActionResult<List<TipoProducto>>> PutTipoProducto(TipoProducto tipo)
         {
             try
             {
                 //Buscar restaurante 
-                _context.Update(producto);
+                _context.Update(tipo);
                 _context.SaveChanges();
                 return Ok();
             }
@@ -89,7 +89,7 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Producto>>> DeleteProducto(int id)
+        public async Task<ActionResult<List<TipoProducto>>> DeleteTipoProducto(int id)
         {
             try
             {
