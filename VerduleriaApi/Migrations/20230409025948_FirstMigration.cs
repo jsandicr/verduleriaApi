@@ -39,28 +39,12 @@ namespace VerduleriaApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Promocion",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Activo = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Promocion", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Rol",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Descripcion = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    IdTipo = table.Column<int>(type: "int", nullable: false)
+                    Descripcion = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,7 +73,6 @@ namespace VerduleriaApi.Migrations
                     NombreCompleto = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Correo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Ubicacion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    IdTipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdRol = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -134,23 +117,23 @@ namespace VerduleriaApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdCarrito = table.Column<int>(type: "int", nullable: false),
                     IdProducto = table.Column<int>(type: "int", nullable: false),
-                    CantidadProducto = table.Column<int>(type: "int", nullable: false),
-                    ProductoId = table.Column<int>(type: "int", nullable: true)
+                    CantidadProducto = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DetalleCarrito", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DetalleCarrito_Carrito_IdProducto",
-                        column: x => x.IdProducto,
+                        name: "FK_DetalleCarrito_Carrito_IdCarrito",
+                        column: x => x.IdCarrito,
                         principalTable: "Carrito",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DetalleCarrito_Producto_ProductoId",
-                        column: x => x.ProductoId,
+                        name: "FK_DetalleCarrito_Producto_IdProducto",
+                        column: x => x.IdProducto,
                         principalTable: "Producto",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -161,23 +144,68 @@ namespace VerduleriaApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdCompra = table.Column<int>(type: "int", nullable: false),
                     IdProducto = table.Column<int>(type: "int", nullable: false),
-                    Cantidad = table.Column<int>(type: "int", nullable: false),
-                    CompraId = table.Column<int>(type: "int", nullable: true),
-                    ProductoId = table.Column<int>(type: "int", nullable: true)
+                    Cantidad = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DetalleCompra", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DetalleCompra_Compra_CompraId",
-                        column: x => x.CompraId,
+                        name: "FK_DetalleCompra_Compra_IdCompra",
+                        column: x => x.IdCompra,
                         principalTable: "Compra",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DetalleCompra_Producto_ProductoId",
-                        column: x => x.ProductoId,
+                        name: "FK_DetalleCompra_Producto_IdProducto",
+                        column: x => x.IdProducto,
+                        principalTable: "Producto",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TipoPromocion",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PorcentajeDebita = table.Column<int>(type: "int", nullable: true),
+                    IdProductoRegala = table.Column<int>(type: "int", nullable: true),
+                    CantidadCompra = table.Column<int>(type: "int", nullable: true),
+                    CantidadRegala = table.Column<int>(type: "int", nullable: true),
+                    ProductoRegalaId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TipoPromocion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TipoPromocion_Producto_ProductoRegalaId",
+                        column: x => x.ProductoRegalaId,
                         principalTable: "Producto",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Promocion",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Activo = table.Column<bool>(type: "bit", nullable: false),
+                    IdTipo = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Promocion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Promocion_TipoPromocion_IdTipo",
+                        column: x => x.IdTipo,
+                        principalTable: "TipoPromocion",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -208,24 +236,24 @@ namespace VerduleriaApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_DetalleCarrito_IdCarrito",
+                table: "DetalleCarrito",
+                column: "IdCarrito");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DetalleCarrito_IdProducto",
                 table: "DetalleCarrito",
                 column: "IdProducto");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetalleCarrito_ProductoId",
-                table: "DetalleCarrito",
-                column: "ProductoId");
+                name: "IX_DetalleCompra_IdCompra",
+                table: "DetalleCompra",
+                column: "IdCompra");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetalleCompra_CompraId",
+                name: "IX_DetalleCompra_IdProducto",
                 table: "DetalleCompra",
-                column: "CompraId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DetalleCompra_ProductoId",
-                table: "DetalleCompra",
-                column: "ProductoId");
+                column: "IdProducto");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Producto_IdTipo",
@@ -241,6 +269,16 @@ namespace VerduleriaApi.Migrations
                 name: "IX_ProductoPromocion_IdPromocion",
                 table: "ProductoPromocion",
                 column: "IdPromocion");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Promocion_IdTipo",
+                table: "Promocion",
+                column: "IdTipo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TipoPromocion_ProductoRegalaId",
+                table: "TipoPromocion",
+                column: "ProductoRegalaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuario_IdRol",
@@ -270,13 +308,16 @@ namespace VerduleriaApi.Migrations
                 name: "Compra");
 
             migrationBuilder.DropTable(
-                name: "Producto");
-
-            migrationBuilder.DropTable(
                 name: "Promocion");
 
             migrationBuilder.DropTable(
                 name: "Rol");
+
+            migrationBuilder.DropTable(
+                name: "TipoPromocion");
+
+            migrationBuilder.DropTable(
+                name: "Producto");
 
             migrationBuilder.DropTable(
                 name: "TipoProducto");

@@ -7,25 +7,25 @@ namespace VerduleriaApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductoController : ControllerBase
+    public class RolController : ControllerBase
     {
         private readonly VerduleriaContext _context;
 
-        public ProductoController(VerduleriaContext context)
+        public RolController(VerduleriaContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Producto>>> GetProductos()
+        public async Task<ActionResult<List<Rol>>> GetRoles()
         {
             try
             {
                 //Retorna el Ok  que es igual al 200 (Status)
-                var productos = _context.Producto.ToList();
-                if(productos != null)
+                var roles = _context.Rol.ToList();
+                if(roles != null)
                 {
-                    return Ok(productos);
+                    return Ok(roles);
                 }
                 else
                 {
@@ -39,15 +39,15 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<Producto>>> GetProductoById(int id)
+        public async Task<ActionResult<List<Rol>>> GetRolById(int id)
         {
             //Retorna el Ok  que es igual al 200 (Status)
             try
             {
-                var producto = _context.Producto.Find(id);
-                if (producto == null)
+                var rol = _context.Rol.Find(id);
+                if (rol == null)
                     return NotFound();
-                return Ok(producto);
+                return Ok(rol);
             }
             catch (Exception)
             {
@@ -56,11 +56,11 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Producto>> PostProducto(Producto producto)
+        public async Task<ActionResult<Rol>> PostRol(Rol rol)
         {
             try
             {
-                _context.Add(producto);
+                _context.Add(rol);
                 _context.SaveChanges();
                 return Ok();
             }
@@ -72,12 +72,12 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<Producto>>> PutProducto(Producto producto)
+        public async Task<ActionResult<Rol>> PutRol(Rol rol)
         {
             try
             {
                 //Buscar restaurante 
-                _context.Update(producto);
+                _context.Update(rol);
                 _context.SaveChanges();
                 return Ok();
             }
@@ -89,7 +89,7 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Producto>>> DeleteProducto(int id)
+        public async Task<ActionResult<List<Rol>>> DeleteRol(int id)
         {
             try
             {

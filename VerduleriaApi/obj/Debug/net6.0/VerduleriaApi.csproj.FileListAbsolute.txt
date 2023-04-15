@@ -80,3 +80,7 @@ D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\obj\Debug\net6.0\ref
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\obj\Debug\net6.0\VerduleriaApi.pdb
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\obj\Debug\net6.0\VerduleriaApi.genruntimeconfig.cache
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\obj\Debug\net6.0\ref\VerduleriaApi.dll
+D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

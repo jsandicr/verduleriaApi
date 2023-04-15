@@ -7,25 +7,25 @@ namespace VerduleriaApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductoController : ControllerBase
+    public class UsuarioController : ControllerBase
     {
         private readonly VerduleriaContext _context;
 
-        public ProductoController(VerduleriaContext context)
+        public UsuarioController(VerduleriaContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Producto>>> GetProductos()
+        public async Task<ActionResult<List<Usuario>>> GetUsuarios()
         {
             try
             {
                 //Retorna el Ok  que es igual al 200 (Status)
-                var productos = _context.Producto.ToList();
-                if(productos != null)
+                var usuarios = _context.Usuario.ToList();
+                if(usuarios != null)
                 {
-                    return Ok(productos);
+                    return Ok(usuarios);
                 }
                 else
                 {
@@ -39,15 +39,15 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<Producto>>> GetProductoById(int id)
+        public async Task<ActionResult<List<Usuario>>> GetUsuarioById(int id)
         {
             //Retorna el Ok  que es igual al 200 (Status)
             try
             {
-                var producto = _context.Producto.Find(id);
-                if (producto == null)
+                var usuario = _context.Usuario.Find(id);
+                if (usuario == null)
                     return NotFound();
-                return Ok(producto);
+                return Ok(usuario);
             }
             catch (Exception)
             {
@@ -56,11 +56,11 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Producto>> PostProducto(Producto producto)
+        public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
             try
             {
-                _context.Add(producto);
+                _context.Add(usuario);
                 _context.SaveChanges();
                 return Ok();
             }
@@ -72,12 +72,11 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<Producto>>> PutProducto(Producto producto)
+        public async Task<ActionResult<Usuario>> PutUsuario(Usuario usuario)
         {
             try
             {
-                //Buscar restaurante 
-                _context.Update(producto);
+                _context.Update(usuario);
                 _context.SaveChanges();
                 return Ok();
             }
@@ -89,7 +88,7 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Producto>>> DeleteProducto(int id)
+        public async Task<ActionResult<List<Usuario>>> DeleteUsuario(int id)
         {
             try
             {

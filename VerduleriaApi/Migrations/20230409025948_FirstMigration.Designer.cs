@@ -12,7 +12,7 @@ using VerduleriaApi.Models;
 namespace VerduleriaApi.Migrations
 {
     [DbContext(typeof(VerduleriaContext))]
-    [Migration("20230327231321_FirstMigration")]
+    [Migration("20230409025948_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -77,14 +77,11 @@ namespace VerduleriaApi.Migrations
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductoId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("IdProducto");
+                    b.HasIndex("IdCarrito");
 
-                    b.HasIndex("ProductoId");
+                    b.HasIndex("IdProducto");
 
                     b.ToTable("DetalleCarrito", (string)null);
                 });
@@ -100,23 +97,17 @@ namespace VerduleriaApi.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CompraId")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdCompra")
                         .HasColumnType("int");
 
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductoId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("CompraId");
+                    b.HasIndex("IdCompra");
 
-                    b.HasIndex("ProductoId");
+                    b.HasIndex("IdProducto");
 
                     b.ToTable("DetalleCompra", (string)null);
                 });
@@ -198,12 +189,17 @@ namespace VerduleriaApi.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<int>("IdTipo")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdTipo");
 
                     b.ToTable("Promocion", (string)null);
                 });
@@ -220,9 +216,6 @@ namespace VerduleriaApi.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("IdTipo")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -247,6 +240,40 @@ namespace VerduleriaApi.Migrations
                     b.ToTable("TipoProducto", (string)null);
                 });
 
+            modelBuilder.Entity("VerduleriaApi.Models.TipoPromocion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CantidadCompra")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CantidadRegala")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("IdProductoRegala")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PorcentajeDebita")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductoRegalaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductoRegalaId");
+
+                    b.ToTable("TipoPromocion");
+                });
+
             modelBuilder.Entity("VerduleriaApi.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -262,10 +289,6 @@ namespace VerduleriaApi.Migrations
 
                     b.Property<int>("IdRol")
                         .HasColumnType("int");
-
-                    b.Property<string>("IdTipo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NombreCompleto")
                         .IsRequired()
@@ -288,13 +311,15 @@ namespace VerduleriaApi.Migrations
                 {
                     b.HasOne("VerduleriaApi.Models.Carrito", "Carrito")
                         .WithMany("DetalleCarrito")
-                        .HasForeignKey("IdProducto")
+                        .HasForeignKey("IdCarrito")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("VerduleriaApi.Models.Producto", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId");
+                        .WithMany("DetalleCarrito")
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Carrito");
 
@@ -304,12 +329,16 @@ namespace VerduleriaApi.Migrations
             modelBuilder.Entity("VerduleriaApi.Models.DetalleCompra", b =>
                 {
                     b.HasOne("VerduleriaApi.Models.Compra", "Compra")
-                        .WithMany()
-                        .HasForeignKey("CompraId");
+                        .WithMany("DetalleCompra")
+                        .HasForeignKey("IdCompra")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("VerduleriaApi.Models.Producto", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId");
+                        .WithMany("DetalleCompra")
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Compra");
 
@@ -346,6 +375,26 @@ namespace VerduleriaApi.Migrations
                     b.Navigation("Promocion");
                 });
 
+            modelBuilder.Entity("VerduleriaApi.Models.Promocion", b =>
+                {
+                    b.HasOne("VerduleriaApi.Models.TipoPromocion", "TipoPromocion")
+                        .WithMany("Promociones")
+                        .HasForeignKey("IdTipo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TipoPromocion");
+                });
+
+            modelBuilder.Entity("VerduleriaApi.Models.TipoPromocion", b =>
+                {
+                    b.HasOne("VerduleriaApi.Models.Producto", "ProductoRegala")
+                        .WithMany()
+                        .HasForeignKey("ProductoRegalaId");
+
+                    b.Navigation("ProductoRegala");
+                });
+
             modelBuilder.Entity("VerduleriaApi.Models.Usuario", b =>
                 {
                     b.HasOne("VerduleriaApi.Models.Rol", "Rol")
@@ -362,8 +411,17 @@ namespace VerduleriaApi.Migrations
                     b.Navigation("DetalleCarrito");
                 });
 
+            modelBuilder.Entity("VerduleriaApi.Models.Compra", b =>
+                {
+                    b.Navigation("DetalleCompra");
+                });
+
             modelBuilder.Entity("VerduleriaApi.Models.Producto", b =>
                 {
+                    b.Navigation("DetalleCarrito");
+
+                    b.Navigation("DetalleCompra");
+
                     b.Navigation("ProductoPromocion");
                 });
 
@@ -380,6 +438,11 @@ namespace VerduleriaApi.Migrations
             modelBuilder.Entity("VerduleriaApi.Models.TipoProducto", b =>
                 {
                     b.Navigation("Productos");
+                });
+
+            modelBuilder.Entity("VerduleriaApi.Models.TipoPromocion", b =>
+                {
+                    b.Navigation("Promociones");
                 });
 #pragma warning restore 612, 618
         }

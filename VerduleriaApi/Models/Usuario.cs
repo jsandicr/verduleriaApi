@@ -6,7 +6,6 @@
         public string NombreCompleto { get; set; }
         public string Correo { get; set; }
         public string Ubicacion { get; set; }
-        public string IdTipo { get; set; }
         public int IdRol { get; set; }
         public Rol? Rol { get; set; }
     }

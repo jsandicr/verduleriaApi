@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using VerduleriaApi.Models;
 
 namespace VerduleriaApi.Controllers
@@ -14,16 +15,23 @@ namespace VerduleriaApi.Controllers
             _context = context;
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<List<Carrito>>> GetCarrito(int id)
+        [HttpGet("{idUsuario}")]
+        public async Task<ActionResult<Carrito>> GetCarrito(int idUsuario)
         {
             try
             {
-                //Retorna el Ok  que es igual al 200 (Status)
-                var carrito = _context.Carrito.Find(id);
-                if(carrito != null)
+
+                var query = (from c in _context.Carrito
+                                   join d in _context.DetalleCarrito
+                                   on c.Id equals d.IdCarrito
+                                   join p in _context.Producto
+                                   on d.IdProducto equals p.Id
+                                   where c.IdUsuario == idUsuario
+                                   select new { Carrito = c, Detalle = d, Productos = p }).ToList();
+
+                if (query != null)
                 {
-                    return Ok(carrito);
+                    return Ok(query);
                 }
                 else
                 {
@@ -41,39 +49,47 @@ namespace VerduleriaApi.Controllers
         {
             try
             {
-                //Se envia IdCarrito en 0 si no hay carrito
-                var carrito = _context.Carrito.Where(x => x.IdUsuario == IdUsuario);
-                if(carrito != null)
+                var carrito = _context.Carrito.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
+                if(carrito == null)
                 {
                     Carrito nuevoCarrito = new Carrito();
                     nuevoCarrito.IdUsuario = IdUsuario;
                     _context.Add(nuevoCarrito);
+                    _context.SaveChanges();
+                    //Se hace la query nuevamente para poder obtener el id del nuevo carrito
+                    carrito = _context.Carrito.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
                     DetalleCarrito detalle = new DetalleCarrito();
-                    detalle.IdCarrito = carrito.First().Id;
+                    detalle.IdCarrito = carrito.Id;
                     detalle.IdProducto = IdProducto;
                     detalle.CantidadProducto = cantidad;
+                    var costoProducto = _context.Producto.Where(x => x.Id == IdProducto).FirstOrDefault().Precio;
+                    detalle.Costo = detalle.CantidadProducto * costoProducto;
                     _context.Add(detalle);
+                    _context.SaveChanges();
                 }
                 else
                 {
                     var producto = (from d in _context.DetalleCarrito
-                                   where d.IdCarrito.Equals(carrito.First().Id) && d.IdProducto.Equals(IdProducto)
-                                   select d).First();
+                                   where d.IdCarrito.Equals(carrito.Id) && d.IdProducto.Equals(IdProducto)
+                                   select d).FirstOrDefault();
                     if (producto != null)
                     {
                         producto.CantidadProducto = producto.CantidadProducto + cantidad;
+
                     }
                     else
                     {
                         DetalleCarrito detalle = new DetalleCarrito();
                         detalle.IdProducto = IdProducto;
-                        detalle.IdCarrito = carrito.First().Id;
+                        detalle.IdCarrito = carrito.Id;
                         detalle.CantidadProducto = cantidad;
+                        var costoProducto = _context.Producto.Where(x => x.Id == IdProducto).FirstOrDefault().Precio;
+                        detalle.Costo = detalle.CantidadProducto * costoProducto;
                         _context.Add(detalle);
                     }
+                    _context.SaveChanges();
                 }
-                
-                _context.SaveChanges();
+
                 return Ok();
             }
             catch (Exception)

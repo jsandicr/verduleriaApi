@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VerduleriaApi.Models;
 
@@ -11,9 +12,11 @@ using VerduleriaApi.Models;
 namespace VerduleriaApi.Migrations
 {
     [DbContext(typeof(VerduleriaContext))]
-    partial class VerduleriaContextModelSnapshot : ModelSnapshot
+    [Migration("20230410230105_FMigration")]
+    partial class FMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

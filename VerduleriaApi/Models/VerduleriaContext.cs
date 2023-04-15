@@ -153,7 +153,27 @@ namespace VerduleriaApi.Models
 
             modelBuilder.Entity<DetalleCarrito>().HasOne(x => x.Carrito)
                 .WithMany(a => a.DetalleCarrito)
+                .HasForeignKey(l => l.IdCarrito);
+
+            modelBuilder.Entity<DetalleCarrito>().HasOne(x => x.Producto)
+                .WithMany(a => a.DetalleCarrito)
                 .HasForeignKey(l => l.IdProducto);
+
+            modelBuilder.Entity<DetalleCompra>().HasOne(x => x.Compra)
+                .WithMany(a => a.DetalleCompra)
+                .HasForeignKey(l => l.IdCompra);
+
+            modelBuilder.Entity<DetalleCompra>().HasOne(x => x.Producto)
+                .WithMany(a => a.DetalleCompra)
+                .HasForeignKey(l => l.IdProducto);
+
+            /*modelBuilder.Entity<Promocion>().HasOne(x => x.TipoPromocion)
+                .WithMany(a => a.Promociones)
+                .HasForeignKey(l => l.IdTipo);
+
+            modelBuilder.Entity<TipoPromocion>().HasOne(x => x.ProductoRegala)
+                .WithMany(a => a.TipoPromociones)
+                .HasForeignKey(l => l.IdProductoRegala);*/
         }
     }
 }

@@ -6,6 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<VerduleriaContext>(opciones =>
     opciones.UseSqlServer(builder.Configuration.GetConnectionString("VerduleriaContext")));
 
+//Esta configuracion permite referencias circulares
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 // Add services to the container.
 
 builder.Services.AddControllers();

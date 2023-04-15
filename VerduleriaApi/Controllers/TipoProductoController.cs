@@ -56,7 +56,7 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<TipoProducto>>> PostTipoProducto(TipoProducto tipo)
+        public async Task<ActionResult<TipoProducto>> PostTipoProducto(TipoProducto tipo)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace VerduleriaApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<TipoProducto>>> PutTipoProducto(TipoProducto tipo)
+        public async Task<ActionResult<TipoProducto>> PutTipoProducto(TipoProducto tipo)
         {
             try
             {
