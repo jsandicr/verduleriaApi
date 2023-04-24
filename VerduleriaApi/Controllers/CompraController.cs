@@ -44,7 +44,7 @@ namespace VerduleriaApi.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<ActionResult> PostCompra(int IdUsuario)
         {
             try
@@ -77,7 +77,8 @@ namespace VerduleriaApi.Controllers
                             {
                                 IdCompra = compra.Id,
                                 IdProducto = d.IdProducto,
-                                Cantidad = d.CantidadProducto
+                                Cantidad = d.CantidadProducto,
+                                Costo = d.Costo
                             };
                             d.Producto.Cantidad -= d.CantidadProducto;
 

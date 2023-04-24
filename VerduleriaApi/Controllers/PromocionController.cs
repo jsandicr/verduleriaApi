@@ -118,7 +118,7 @@ namespace VerduleriaApi.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("CompraPromocion")]
         public async Task<ActionResult> CompraPromocion(int IdPromocion, int IdUsuario)
         {
@@ -133,7 +133,8 @@ namespace VerduleriaApi.Controllers
                                  on pd.IdProducto equals p2.Id
                                  where p.Id == IdPromocion
                                  select new { Promocion = p, productoPromocion = pd, producto = p2 }).ToList();
-                    if (query != null)
+
+                    if (query.Count() > 0)
                     {
                         Promocion promocion = new Promocion();
                         promocion = query.FirstOrDefault().Promocion;
@@ -141,101 +142,50 @@ namespace VerduleriaApi.Controllers
                         promocion.ProductoPromocion = query.FirstOrDefault().Promocion.ProductoPromocion;
                         if (promocion.ProductoPromocion != null)
                         {
+                            var carrito = _context.Carrito.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
+                            if (carrito == null)
+                            {
+                                Carrito nuevoCarrito = new Carrito();
+                                nuevoCarrito.IdUsuario = IdUsuario;
+                                _context.Add(nuevoCarrito);
+                                _context.SaveChanges();
+                                //Se hace la query nuevamente para poder obtener el id del nuevo carrito
+                                carrito = _context.Carrito.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
+                            }
                             foreach (ProductoPromocion p in query.FirstOrDefault().Promocion.ProductoPromocion)
                             {
+                                DetalleCarrito detalle = new DetalleCarrito();
+                                detalle.IdProducto = p.IdProducto;
+                                detalle.IdCarrito = carrito.Id;
+                                detalle.CantidadProducto = p.Cantidad;
+                                var costoProducto = _context.Producto.Where(x => x.Id == p.IdProducto).FirstOrDefault().Precio;
+                                detalle.Editable = false;
+
                                 if (p.ProductoCompra == true && p.PorcentajeDebita != null)
                                 {
-                                    var carrito = _context.Carrito.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
-                                    if (carrito != null)
-                                    {
-                                        DetalleCarrito detalle = new DetalleCarrito();
-                                        detalle.IdProducto = p.IdProducto;
-                                        detalle.IdCarrito = carrito.Id;
-                                        detalle.CantidadProducto = p.Cantidad;
-                                        var costoProducto = _context.Producto.Where(x => x.Id == p.IdProducto).FirstOrDefault().Precio;
-                                        detalle.Costo = costoProducto - (costoProducto * p.PorcentajeDebita / 100);
-                                        _context.Add(detalle);
-                                    }
-                                    else
-                                    {
-                                        Carrito nuevoCarrito = new Carrito();
-                                        nuevoCarrito.IdUsuario = IdUsuario;
-                                        _context.Add(nuevoCarrito);
-                                        _context.SaveChanges();
-                                        //Se hace la query nuevamente para poder obtener el id del nuevo carrito
-                                        carrito = _context.Carrito.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
-                                        DetalleCarrito detalle = new DetalleCarrito();
-                                        detalle.IdCarrito = carrito.Id;
-                                        detalle.IdProducto = p.IdProducto;
-                                        detalle.CantidadProducto = p.Cantidad;
-                                        var costoProducto = _context.Producto.Where(x => x.Id == p.IdProducto).FirstOrDefault().Precio;
-                                        detalle.Costo = costoProducto * detalle.CantidadProducto / costoProducto;
-                                        _context.Add(detalle);
-                                    }
+                                    detalle.Costo = (costoProducto - (costoProducto * p.PorcentajeDebita / 100)) * detalle.CantidadProducto;
+                                    _context.Add(detalle);
                                 }
+
                                 if (p.ProductoCompra == true && p.PorcentajeDebita == null)
                                 {
-                                    var carrito = _context.Carrito.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
-                                    if (carrito != null)
-                                    {
-                                        DetalleCarrito detalle = new DetalleCarrito();
-                                        detalle.IdProducto = p.IdProducto;
-                                        detalle.IdCarrito = carrito.Id;
-                                        detalle.CantidadProducto = p.Cantidad;
-                                        var costoProducto = _context.Producto.Where(x => x.Id == p.IdProducto).FirstOrDefault().Precio;
-                                        detalle.Costo = costoProducto;
-                                        _context.Add(detalle);
-                                    }
-                                    else
-                                    {
-                                        Carrito nuevoCarrito = new Carrito();
-                                        nuevoCarrito.IdUsuario = IdUsuario;
-                                        _context.Add(nuevoCarrito);
-                                        _context.SaveChanges();
-                                        //Se hace la query nuevamente para poder obtener el id del nuevo carrito
-                                        carrito = _context.Carrito.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
-                                        DetalleCarrito detalle = new DetalleCarrito();
-                                        detalle.IdCarrito = carrito.Id;
-                                        detalle.IdProducto = p.IdProducto;
-                                        detalle.CantidadProducto = p.Cantidad;
-                                        var costoProducto = _context.Producto.Where(x => x.Id == p.IdProducto).FirstOrDefault().Precio;
-                                        detalle.Costo = costoProducto;
-                                        _context.Add(detalle);
-                                    }
+                                    detalle.Costo = costoProducto * detalle.CantidadProducto;
+                                    _context.Add(detalle);
                                 }
+
                                 if (p.ProductoCompra == false && p.PorcentajeDebita == null)
                                 {
-                                    Carrito nuevoCarrito = new Carrito();
-                                    nuevoCarrito.IdUsuario = IdUsuario;
-                                    _context.Add(nuevoCarrito);
-                                    _context.SaveChanges();
-                                    //Se hace la query nuevamente para poder obtener el id del nuevo carrito
-                                    var carrito = _context.Carrito.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
-                                    DetalleCarrito detalle = new DetalleCarrito();
-                                    detalle.IdCarrito = carrito.Id;
-                                    detalle.IdProducto = p.IdProducto;
-                                    detalle.CantidadProducto = p.Cantidad;
+
                                     detalle.Costo = 0;
                                     _context.Add(detalle);
                                 }
                                 _context.SaveChanges();
                             }
-                            return Ok(query);
-                        }
-                        else
-                        {
-                            return BadRequest();
+                            return Ok();
                         }
                     }
-                    else
-                    {
-                        return BadRequest();
-                    }
                 }
-                else
-                {
-                    return BadRequest();
-                }
+                return BadRequest();
             }
             catch (Exception)
             {
