@@ -2377,19 +2377,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pedru\\.nuget\\packages\\": {}
+    "C:\\Users\\micha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Pedro 7.0\\Programación Avanzada Web\\verduleriaApi\\VerduleriaApi\\VerduleriaApi.csproj",
+      "projectUniqueName": "C:\\Users\\micha\\Documents\\Universidad Fidélitas - Archivos\\7mo Cuatrimestre\\Programacion Avanzada\\verduleriaApi\\VerduleriaApi\\VerduleriaApi.csproj",
       "projectName": "VerduleriaApi",
-      "projectPath": "D:\\Pedro 7.0\\Programación Avanzada Web\\verduleriaApi\\VerduleriaApi\\VerduleriaApi.csproj",
-      "packagesPath": "C:\\Users\\pedru\\.nuget\\packages\\",
-      "outputPath": "D:\\Pedro 7.0\\Programación Avanzada Web\\verduleriaApi\\VerduleriaApi\\obj\\",
+      "projectPath": "C:\\Users\\micha\\Documents\\Universidad Fidélitas - Archivos\\7mo Cuatrimestre\\Programacion Avanzada\\verduleriaApi\\VerduleriaApi\\VerduleriaApi.csproj",
+      "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\micha\\Documents\\Universidad Fidélitas - Archivos\\7mo Cuatrimestre\\Programacion Avanzada\\verduleriaApi\\VerduleriaApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pedru\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
