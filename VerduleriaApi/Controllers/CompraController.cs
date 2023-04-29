@@ -83,6 +83,7 @@ namespace VerduleriaApi.Controllers
                             d.Producto.Cantidad -= d.CantidadProducto;
 
                             _context.Add(detalleC);
+                            _context.SaveChanges();
                         }
                         else
                         {

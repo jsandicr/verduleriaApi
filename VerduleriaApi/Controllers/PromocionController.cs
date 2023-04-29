@@ -53,16 +53,43 @@ namespace VerduleriaApi.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("ProductoxPromocion")]
-        public async Task<ActionResult> PostProductoxPromocion(int idProducto, int idPromocion)
+
+        public async Task<ActionResult<List<ProductoPromocion>>> GetProductosPromociones()
         {
             try
             {
-                ProductoPromocion relacion = new ProductoPromocion();
-                relacion.IdProducto = idProducto;
-                relacion.IdPromocion = idPromocion;
-                _context.Add(relacion);
+                var promociones = _context.ProductoPromocion.ToList();
+                var query = (from pp in _context.ProductoPromocion
+                             join p in _context.Producto
+                             on pp.IdProducto equals p.Id
+                             join pr in _context.Promocion
+                             on pp.IdPromocion equals pr.Id
+                             select new { ProductoPromocion = pp, Producto = p, Promocion = pr }).ToList();
+
+                if (query != null)
+                {
+                    return Ok(query);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        [Route("ProductoxPromocion")]
+        public async Task<ActionResult> PostProductoxPromocion(ProductoPromocion productoPromocion)
+        {
+            try
+            {
+                _context.Add(productoPromocion);
                 _context.SaveChanges();
                 return Ok();
             }

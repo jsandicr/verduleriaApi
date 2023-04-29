@@ -12,51 +12,32 @@ D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Ver
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\VerduleriaApi.runtimeconfig.json
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\VerduleriaApi.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\VerduleriaApi.pdb
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Azure.Core.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Azure.Identity.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Humanizer.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Identity.Client.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.OpenApi.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Mono.TextTemplating.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.CodeDom.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.Drawing.Common.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.Memory.Data.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.Runtime.Caching.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.Security.Permissions.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.Text.Encodings.Web.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.Text.Json.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.Windows.Extensions.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
@@ -69,7 +50,6 @@ D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\run
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\obj\Debug\net6.0\staticwebassets.build.json
 D:\Q7\Programacion_Web\Proyecto\VerduleriaApi\VerduleriaApi\obj\Debug\net6.0\staticwebassets.development.json
@@ -228,3 +208,4 @@ C:\Users\micha\Documents\Universidad Fidélitas - Archivos\7mo Cuatrimestre\Prog
 C:\Users\micha\Documents\Universidad Fidélitas - Archivos\7mo Cuatrimestre\Programacion Avanzada\verduleriaApi\VerduleriaApi\obj\Debug\net6.0\VerduleriaApi.pdb
 C:\Users\micha\Documents\Universidad Fidélitas - Archivos\7mo Cuatrimestre\Programacion Avanzada\verduleriaApi\VerduleriaApi\obj\Debug\net6.0\VerduleriaApi.genruntimeconfig.cache
 C:\Users\micha\Documents\Universidad Fidélitas - Archivos\7mo Cuatrimestre\Programacion Avanzada\verduleriaApi\VerduleriaApi\obj\Debug\net6.0\ref\VerduleriaApi.dll
+D:\Q7\Programacion_Web\Proyecto\verduleriaApi\VerduleriaApi\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
