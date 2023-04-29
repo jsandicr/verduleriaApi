@@ -9,11 +9,11 @@ namespace VerduleriaApi.Controllers
     [ApiController]
     public class RolController : ControllerBase
     {
-        private readonly VerduleriaContext _context;
+        private readonly IRolModel _rolModel;
 
-        public RolController(VerduleriaContext context)
+        public RolController(IRolModel rolModel)
         {
-            _context = context;
+            _rolModel = rolModel;
         }
 
         [HttpGet]
@@ -21,16 +21,8 @@ namespace VerduleriaApi.Controllers
         {
             try
             {
-                //Retorna el Ok  que es igual al 200 (Status)
-                var roles = _context.Rol.ToList();
-                if(roles != null)
-                {
-                    return Ok(roles);
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                var roles = _rolModel.GetRoles();
+                return Ok(roles);    
             }
             catch (Exception)
             {
@@ -44,7 +36,7 @@ namespace VerduleriaApi.Controllers
             //Retorna el Ok  que es igual al 200 (Status)
             try
             {
-                var rol = _context.Rol.Find(id);
+                var rol = _rolModel.GetRolById(id);
                 if (rol == null)
                     return NotFound();
                 return Ok(rol);
@@ -60,9 +52,15 @@ namespace VerduleriaApi.Controllers
         {
             try
             {
-                _context.Add(rol);
-                _context.SaveChanges();
-                return Ok();
+                var response = _rolModel.PostRol(rol);
+                if (response.Id != null)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
             catch (Exception)
             {
@@ -76,10 +74,15 @@ namespace VerduleriaApi.Controllers
         {
             try
             {
-                //Buscar restaurante 
-                _context.Update(rol);
-                _context.SaveChanges();
-                return Ok();
+                var response = _rolModel.PutRol(rol);
+                if (response.Id != null)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
             catch (Exception)
             {

@@ -20,7 +20,6 @@ namespace VerduleriaApi.Controllers
         {
             try
             {
-
                 var query = (from c in _context.Carrito
                                    join d in _context.DetalleCarrito
                                    on c.Id equals d.IdCarrito
